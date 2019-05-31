@@ -1,0 +1,6 @@
+[submodule "registry-config-base"]
+	path = registry-config-base
+	url = git@github.com:UKGovLD/registry-config-base.git
+[submodule "registry-core"]
+	path = registry-core
+	url = https://github.com/UKGovLD/registry-core.git

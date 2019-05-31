@@ -1,0 +1,12 @@
+version: '3'
+services:
+  registry:
+    ports:
+      - "80:8080"
+    volumes:
+      - ./store:/var/opt/ldregistry/store
+    environment:
+      REGISTRY_BASE_URI: "http://localhost/registry"
+      USER_LOGIN: alex
+      USER_PASSWORD: changeme
+    image: epimorphics/registry:2.0.1-SNAPSHOT
