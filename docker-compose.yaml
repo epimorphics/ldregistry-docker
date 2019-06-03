@@ -6,7 +6,8 @@ services:
     volumes:
       - ./store:/var/opt/ldregistry/store
     environment:
-      REGISTRY_BASE_URI: "http://localhost/registry"
+      REGISTRY_BASE_PATH: "codes"
+      REGISTRY_BASE_URI: "http://data.food.gov.uk/codes"
       USER_LOGIN: alex
       USER_PASSWORD: changeme
     image: epimorphics/registry:2.0.1-SNAPSHOT

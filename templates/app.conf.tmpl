@@ -19,7 +19,7 @@ reg                  = com.epimorphics.registry.webapi.LibReg
 velocity             = com.epimorphics.appbase.templates.VelocityRender
 velocity.templates   = /opt/ldregistry/templates
 #velocity.templates   = {webapp}/WEB-INF/templates
-velocity.root        = $REGISTRY_BASE_URI/ui
+velocity.root        = /$REGISTRY_BASE_PATH/ui
 velocity.plugin      = $reg
 # velocity.manualConfig= true
 velocity.production  = false
@@ -58,7 +58,7 @@ config.showRegisterAsDatatable = true
 #config.showClassDiagrams = true
 config.registryName  = Test Registry
 config.showStatus = valid
-#config.loginMaster = https://environment.data.gov.uk/registry
+# config.loginMaster = http://localhost/codes
 config.oauth2        = $oauth2
 
 # The Registry configuration itself

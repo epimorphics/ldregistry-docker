@@ -1,6 +1,6 @@
 #!/bin/sh
-if [ $REGISTRY_BASE_PATH ]; then
-  mv /usr/local/tomcat/webapps/registry.war /usr/local/tomcat/webapps/$REGISTRY_BASE_PATH.war
+if [ -z $REGISTRY_BASE_PATH ]; then
+  export REGISTRY_BASE_PATH=registry
 fi
 if [ -z $REGISTRY_BASE_URI ]; then
   REGISTRY_BASE_URI="http://localhost/registry"
@@ -13,6 +13,8 @@ if [ -z $USER_PASSWORD ]; then
 fi
 echo $USER_LOGIN $USER_PASSWORD
 envsubst '${REGISTRY_BASE_URI}' < /etc/templates/app.conf.tmpl > /opt/ldregistry/config/app.conf
+envsubst '${REGISTRY_BASE_PATH}' < /etc/templates/_navbar.vm.tmpl > /opt/ldregistry/templates/nav/_navbar.vm
 envsubst < /etc/templates/user.ini.tmpl > /opt/ldregistry/config/user.ini
+envsubst < /etc/templates/server.xml.tmpl > /usr/local/tomcat/conf/server.xml
 rm /var/opt/ldregistry/store/tdb.lock
 catalina.sh run
