@@ -5,7 +5,11 @@
 #else
     #set($scheme = "http")
 #end
-#set( $absoluteRoot = "$scheme://$request.serverName/$REGISTRY_BASE_PATH" )
+#if ( $request.getServerPort() == "80" )
+   #set( $absoluteRoot = "$scheme://$request.serverName/$REGISTRY_BASE_PATH" )
+#else
+   #set( $absoluteRoot = "$scheme://$request.serverName:$request.getServerPort()/$REGISTRY_BASE_PATH" )
+#end
 
 <nav class='navbar o-navbar-reg navbar-static-top' role='navigation'>
     <div class='container'>
