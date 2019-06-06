@@ -11,11 +11,14 @@ fi
 if [ -z $USER_PASSWORD ]; then
   export USER_PASSWORD="changeme"
 fi
-echo $USER_LOGIN $USER_PASSWORD
+# set war to be at 8080/$REGISTRY_BASE_PATH
 mv /opt/ldregistry/registry.war /usr/local/tomcat/webapps/$REGISTRY_BASE_PATH.war
-envsubst '${REGISTRY_BASE_URI}' < /etc/templates/app.conf.tmpl > /opt/ldregistry/config/app.conf
-envsubst '${REGISTRY_BASE_PATH}' < /etc/templates/_navbar.vm.tmpl > /opt/ldregistry/templates/nav/_navbar.vm
+
+# replace registry.baseUri with value of $REGISTRY_BASE_URI
+sed -i "s|\(registry.baseUri[ \t]*=[ \t]*\)\(.*\)|\1 $REGISTRY_BASE_URI|g" /opt/ldregistry/config/app.conf
+
+# setup user with admin and password
 envsubst < /etc/templates/user.ini.tmpl > /opt/ldregistry/config/user.ini
-#envsubst < /etc/templates/server.xml.tmpl > /usr/local/tomcat/conf/server.xml
+
 rm /var/opt/ldregistry/store/tdb.lock
 catalina.sh run
