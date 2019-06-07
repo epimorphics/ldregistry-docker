@@ -8,6 +8,7 @@ services:
     environment:
       REGISTRY_BASE_PATH: codes
       REGISTRY_BASE_URI: http://data.food.gov.uk/codes
+      REGISTRY_REDIRECT_HTTPS_LOGIN: "true"
       USER_LOGIN: alex
       USER_PASSWORD: changeme
     image: epimorphics/registry:2.0.1-SNAPSHOT
